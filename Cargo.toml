@@ -2,6 +2,11 @@
 name = "clicolors-control"
 version = "0.1.0"
 authors = ["Armin Ronacher <armin.ronacher@active-4.com>"]
+keywords = ["cli", "clicolor", "clicolors", "colors"]
+license = "MIT"
+homepage = "https://github.com/mitsuhiko/clicolors-control"
+documentation = "https://docs.rs/clicolors-control"
+readme = "README.md"
 
 [features]
 default = ["terminal_autoconfig"]
