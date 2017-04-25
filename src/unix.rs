@@ -1,3 +1,5 @@
+use libc;
+
 #[inline(always)]
 pub fn is_a_terminal() -> bool {
     unsafe {
