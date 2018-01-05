@@ -1,5 +1,7 @@
-use winapi::{STD_OUTPUT_HANDLE, STD_ERROR_HANDLE, INVALID_HANDLE_VALUE};
-use kernel32::{GetStdHandle, GetConsoleMode, SetConsoleMode};
+use winapi::um::winbase::{STD_OUTPUT_HANDLE, STD_ERROR_HANDLE};
+use winapi::um::handleapi::{INVALID_HANDLE_VALUE};
+use winapi::um::consoleapi::{GetConsoleMode, SetConsoleMode};
+use winapi::um::processenv::{GetStdHandle};
 
 const ENABLE_VIRTUAL_TERMINAL_PROCESSING: u32 = 0x4;
 

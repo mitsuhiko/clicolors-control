@@ -17,8 +17,8 @@ terminal_autoconfig = []
 lazy_static = "0"
 
 [target.'cfg(windows)'.dependencies]
-winapi = "0"
-kernel32-sys = "0"
+winapi = { version = "0.3", features = ["winbase","handleapi","consoleapi","processenv"] } 
+kernel32-sys = "0.2.2" 
 
 [target.'cfg(unix)'.dependencies]
 libc = "0"
