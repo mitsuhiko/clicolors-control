@@ -1,4 +1,5 @@
-use winapi::{STD_OUTPUT_HANDLE, STD_ERROR_HANDLE, INVALID_HANDLE_VALUE};
+use winapi::um::winbase::{STD_OUTPUT_HANDLE, STD_ERROR_HANDLE};
+use winapi::um::handleapi::INVALID_HANDLE_VALUE;
 use kernel32::{GetStdHandle, GetConsoleMode, SetConsoleMode};
 
 const ENABLE_VIRTUAL_TERMINAL_PROCESSING: u32 = 0x4;
@@ -28,7 +29,7 @@ pub fn is_a_color_terminal() -> bool {
 fn enable_ansi_on(handle: u32) -> bool {
     unsafe {
         let handle = GetStdHandle(handle);
-        if handle == INVALID_HANDLE_VALUE {
+        if handle == INVALID_HANDLE_VALUE as *mut ::std::os::raw::c_void {
             return false;
         }
 
