@@ -5,7 +5,7 @@ version = "0.1.0"
 authors = ["Armin Ronacher <armin.ronacher@active-4.com>"]
 keywords = ["cli", "clicolor", "clicolors", "colors"]
 license = "MIT"
-homepage = "https://github.com/mitsuhiko/clicolors-control"
+repository = "https://github.com/mitsuhiko/clicolors-control"
 documentation = "https://docs.rs/clicolors-control"
 readme = "README.md"
 
@@ -17,8 +17,8 @@ terminal_autoconfig = []
 lazy_static = "0"
 
 [target.'cfg(windows)'.dependencies]
-winapi = "0"
-kernel32-sys = "0"
+winapi = { version = "0.3", features = ["winbase","handleapi","consoleapi","processenv"] } 
+kernel32-sys = "0.2.2" 
 
 [target.'cfg(unix)'.dependencies]
 libc = "0"
