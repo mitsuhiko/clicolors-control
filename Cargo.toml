@@ -14,7 +14,7 @@ default = ["terminal_autoconfig"]
 terminal_autoconfig = []
 
 [dependencies]
-lazy_static = "0"
+lazy_static = "1"
 
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3", features = ["winbase","handleapi","consoleapi","processenv"] } 
