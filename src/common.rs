@@ -51,8 +51,8 @@ pub fn configure_terminal() -> bool {
     #[cfg(windows)]
     {
         if enable_ansi_mode() {
-            /// if the terminal is configured we override the cached colors value
-            /// with the default as otherwise we might have a wrong value.
+            // if the terminal is configured we override the cached colors value
+            // with the default as otherwise we might have a wrong value.
             set_colors_enabled(enable_colors_by_default());
             true
         } else {

@@ -37,7 +37,7 @@
 
 #[cfg(unix)] extern crate libc;
 #[cfg(windows)] extern crate winapi;
-#[cfg(windows)] extern crate kernel32;
+#[cfg(windows)] extern crate atty;
 #[macro_use] extern crate lazy_static;
 
 mod common;

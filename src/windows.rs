@@ -2,16 +2,13 @@ use winapi::um::winbase::{STD_OUTPUT_HANDLE, STD_ERROR_HANDLE};
 use winapi::um::handleapi::{INVALID_HANDLE_VALUE};
 use winapi::um::consoleapi::{GetConsoleMode, SetConsoleMode};
 use winapi::um::processenv::{GetStdHandle};
+use atty;
 
 const ENABLE_VIRTUAL_TERMINAL_PROCESSING: u32 = 0x4;
 
 
 pub fn is_a_terminal() -> bool {
-    unsafe {
-        let handle = GetStdHandle(STD_OUTPUT_HANDLE);
-        let mut out = 0;
-        GetConsoleMode(handle, &mut out) != 0
-    }
+    atty::is(atty::Stream::Stdout)
 }
 
 #[cfg(feature="terminal_autoconfig")]
