@@ -21,4 +21,4 @@ winapi = { version = "0.3", features = ["winbase","handleapi","consoleapi","proc
 atty = "0.2.11"
 
 [target.'cfg(unix)'.dependencies]
-libc = "0"
+libc = "0.2"
