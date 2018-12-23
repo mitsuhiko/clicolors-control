@@ -35,13 +35,6 @@
 //!
 //! The terminal can be manually configured for colors by calling `configure_terminal()`
 
-#[cfg(unix)] extern crate libc;
-#[cfg(windows)] extern crate winapi;
-#[cfg(windows)] extern crate atty;
-#[macro_use] extern crate lazy_static;
+extern crate clicolors_control;
 
-mod common;
-#[cfg(unix)] mod unix;
-#[cfg(windows)] mod windows;
-
-pub use common::{colors_enabled, set_colors_enabled, configure_terminal};
+pub use clicolors_control::*;
