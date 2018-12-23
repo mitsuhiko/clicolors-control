@@ -37,4 +37,4 @@
 
 extern crate clicolors_control;
 
-pub use clicolors_control::*;
+pub use clicolors_control::{colors_enabled, configure_terminal, set_colors_enabled};
