@@ -8,13 +8,12 @@ pub use windows::*;
 
 /// Returns the default value for `colors_enabled`.
 pub fn enable_colors_by_default() -> bool {
-    (is_a_color_terminal() && &env::var("CLICOLOR").unwrap_or("1".into()) != "0") ||
-    &env::var("CLICOLOR_FORCE").unwrap_or("0".into()) != "0"
+    (is_a_color_terminal() && &env::var("CLICOLOR").unwrap_or("1".into()) != "0")
+        || &env::var("CLICOLOR_FORCE").unwrap_or("0".into()) != "0"
 }
 
 lazy_static! {
-    static ref ENABLE_COLORS: AtomicBool =
-        AtomicBool::new(enable_colors_by_default());
+    static ref ENABLE_COLORS: AtomicBool = AtomicBool::new(enable_colors_by_default());
 }
 
 /// Returns `true` if colors should be enabled.

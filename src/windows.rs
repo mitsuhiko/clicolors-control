@@ -1,26 +1,25 @@
+use atty;
 use std::env;
 use std::mem;
 use std::slice;
-use winapi::um::winbase::{STD_OUTPUT_HANDLE, STD_ERROR_HANDLE};
-use winapi::um::handleapi::{INVALID_HANDLE_VALUE};
-use winapi::um::consoleapi::{GetConsoleMode, SetConsoleMode};
-use winapi::um::processenv::{GetStdHandle};
-use winapi::um::winnt::WCHAR;
 use winapi::ctypes::c_void;
-use winapi::um::winbase::GetFileInformationByHandleEx;
-use winapi::um::fileapi::FILE_NAME_INFO;
-use winapi::um::minwinbase::FileNameInfo;
 use winapi::shared::minwindef::MAX_PATH;
-use atty;
+use winapi::um::consoleapi::{GetConsoleMode, SetConsoleMode};
+use winapi::um::fileapi::FILE_NAME_INFO;
+use winapi::um::handleapi::INVALID_HANDLE_VALUE;
+use winapi::um::minwinbase::FileNameInfo;
+use winapi::um::processenv::GetStdHandle;
+use winapi::um::winbase::GetFileInformationByHandleEx;
+use winapi::um::winbase::{STD_ERROR_HANDLE, STD_OUTPUT_HANDLE};
+use winapi::um::winnt::WCHAR;
 
 const ENABLE_VIRTUAL_TERMINAL_PROCESSING: u32 = 0x4;
-
 
 pub fn is_a_terminal() -> bool {
     atty::is(atty::Stream::Stdout)
 }
 
-#[cfg(feature="terminal_autoconfig")]
+#[cfg(feature = "terminal_autoconfig")]
 pub fn is_a_color_terminal() -> bool {
     if !is_a_terminal() {
         return false;
@@ -31,7 +30,7 @@ pub fn is_a_color_terminal() -> bool {
     enable_ansi_mode()
 }
 
-#[cfg(not(feature="terminal_autoconfig"))]
+#[cfg(not(feature = "terminal_autoconfig"))]
 pub fn is_a_color_terminal() -> bool {
     if msys_tty_on_stdout() {
         return msys_color_check();
@@ -42,7 +41,7 @@ pub fn is_a_color_terminal() -> bool {
 fn msys_color_check() -> bool {
     match env::var("TERM") {
         Ok(term) => term != "dumb",
-        Err(_) => true
+        Err(_) => true,
     }
 }
 
@@ -71,7 +70,7 @@ pub fn enable_ansi_mode() -> bool {
     enable_ansi_on(STD_OUTPUT_HANDLE) || enable_ansi_on(STD_ERROR_HANDLE)
 }
 
-fn msys_tty_on_stdout() -> bool {
+pub fn msys_tty_on_stdout() -> bool {
     unsafe {
         let handle = GetStdHandle(STD_OUTPUT_HANDLE);
         let size = mem::size_of::<FILE_NAME_INFO>();
