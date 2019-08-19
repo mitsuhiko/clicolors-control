@@ -6,6 +6,9 @@ pub use unix::*;
 #[cfg(windows)]
 pub use windows::*;
 
+#[cfg(all(not(unix), not(windows)))]
+pub use generic::*;
+
 /// Returns the default value for `colors_enabled`.
 pub fn enable_colors_by_default() -> bool {
     (is_a_color_terminal() && &env::var("CLICOLOR").unwrap_or("1".into()) != "0")

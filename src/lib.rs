@@ -50,5 +50,7 @@ pub mod terminfo;
 mod unix;
 #[cfg(windows)]
 mod windows;
+#[cfg(all(not(unix), not(windows)))]
+mod generic;
 
 pub use common::{colors_enabled, configure_terminal, set_colors_enabled};
