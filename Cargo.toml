@@ -1,7 +1,7 @@
 [package]
 name = "clicolors-control"
 description = "A common utility library to control CLI colorization"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Armin Ronacher <armin.ronacher@active-4.com>"]
 keywords = ["cli", "clicolor", "clicolors", "colors"]
 license = "MIT"
