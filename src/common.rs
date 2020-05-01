@@ -1,8 +1,10 @@
 use std::env;
 use std::sync::atomic::{AtomicBool, Ordering};
 
+use lazy_static::lazy_static;
+
 #[cfg(unix)]
-pub use unix::*;
+pub use crate::unix::*;
 #[cfg(windows)]
 pub use windows::*;
 
@@ -11,8 +13,8 @@ pub use generic::*;
 
 /// Returns the default value for `colors_enabled`.
 pub fn enable_colors_by_default() -> bool {
-    (is_a_color_terminal() && &env::var("CLICOLOR").unwrap_or("1".into()) != "0")
-        || &env::var("CLICOLOR_FORCE").unwrap_or("0".into()) != "0"
+    (is_a_color_terminal() && &env::var("CLICOLOR").unwrap_or_else(|_| "1".into()) != "0")
+        || &env::var("CLICOLOR_FORCE").unwrap_or_else(|_| "0".into()) != "0"
 }
 
 lazy_static! {

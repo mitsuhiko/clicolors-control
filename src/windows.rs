@@ -1,4 +1,3 @@
-use atty;
 use std::env;
 use std::mem;
 use std::slice;
