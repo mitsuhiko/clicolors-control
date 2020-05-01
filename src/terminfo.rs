@@ -3,7 +3,7 @@
 //! These are internal functions exported to come to the same conclusions as
 //! clicolors-control about terminal and color support if that is wanted.
 
-use common;
+use crate::common;
 
 /// Returns `true` if colors are supported by this terminal.
 pub fn supports_colors() -> bool {

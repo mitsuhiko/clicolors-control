@@ -11,14 +11,10 @@
 //! ## Example Usage
 //!
 //! ```rust
-//! extern crate clicolors_control;
-//!
-//! pub fn main() {
-//!     if clicolors_control::colors_enabled() {
-//!         println!("\x1b[36mThis is colored text.\x1b[0m");
-//!     } else {
-//!         println!("Someone turned off the colors :()")
-//!     }
+//! if clicolors_control::colors_enabled() {
+//!     println!("\x1b[36mThis is colored text.\x1b[0m");
+//! } else {
+//!     println!("Someone turned off the colors :()")
 //! }
 //! ```
 //!
@@ -35,22 +31,13 @@
 //!
 //! The terminal can be manually configured for colors by calling `configure_terminal()`
 
-#[cfg(windows)]
-extern crate atty;
-#[cfg(unix)]
-extern crate libc;
-#[cfg(windows)]
-extern crate winapi;
-#[macro_use]
-extern crate lazy_static;
-
 mod common;
+#[cfg(all(not(unix), not(windows)))]
+mod generic;
 pub mod terminfo;
 #[cfg(unix)]
 mod unix;
 #[cfg(windows)]
 mod windows;
-#[cfg(all(not(unix), not(windows)))]
-mod generic;
 
-pub use common::{colors_enabled, configure_terminal, set_colors_enabled};
+pub use crate::common::{colors_enabled, configure_terminal, set_colors_enabled};
